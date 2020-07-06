@@ -16,5 +16,4 @@ alias f='open -a Finder ./'
 alias la='ls -A'
 alias l='ls -CF'
 alias ll='ls -alF'
-
-#alias e='vim'
+alias v='vim'
