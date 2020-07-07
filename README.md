@@ -1,2 +1,2 @@
-# dotrc_files
-Backup for configurations files
+# dotfiles
+Backup for configuration dot files
