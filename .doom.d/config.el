@@ -2,12 +2,12 @@
 
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; sync' after modifying this file!
-
+;;(setq  mac-command-modifier 'meta)
 
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets.
-(setq user-full-name "John Doe"
-      user-mail-address "john@doe.com")
+(setq user-full-name "Sergey Melnikov"
+      user-mail-address "melnikhov@gmail.com")
 
 ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
 ;; are the three important ones:
@@ -19,8 +19,9 @@
 ;;
 ;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
 ;; font string. You generally only need these two:
-;; (setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
+(setq doom-font (font-spec :family "JetBrains Mono" :size 16 :weight 'semi-light))
 ;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
+;;
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
@@ -30,7 +31,40 @@
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/org/")
+(setq org-ellipsis "▼")
+(setq org-roam-directory "~/org/")
+(add-hook 'after-init-hook 'org-roam-mode)
+(setq org-roam-capture-templates
+        '(("l" "Lit" plain (function org-roam--capture-get-point)
+           "%?"
+           :file-name "${slug}"
+           :head "#+title: ${title}\n"
+           :unnarrowed t)
+          ("r" "Roam note" entry (file create-org-file)
+           "* TODO\n #+title: %?\n %t\n")
+          ("p" "Private" plain (function org-roam-capture--get-point)
+           "%?"
+           :head "#+title: %?\n *TODO %i\n %a"
+           :unnarrowed t)))
 
+;; This function return quantity of three-symbols org files
+(defun get-files-quantity ()
+    (string-to-number
+        (shell-command-to-string "ls ~/org/???.org | wc -l")))
+;; This function return dtring line from notes-id.txt with id
+(defun get-id-from-file (filePath)
+    "Return the contents of filename's line"
+    (with-temp-buffer
+        (insert-file-contents filePath nil (- (* 4 notes-quantity) 4) (- (* 4 notes-quantity) 1))
+        (buffer-string)))
+
+(defun create-org-file ()
+    "Create an org file in ~/org/."
+    (interactive)
+    (setq notes-quantity (+ 1 (get-files-quantity)))
+    (let ((name (get-id-from-file "~/org/notes-id.txt")))
+      (expand-file-name (format "%s.org"
+                                  name) "~/org/")))
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type t)
@@ -64,3 +98,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+;; Full screen mode
+(if (eq initial-window-system 'x)                 ; if started by emacs command or desktop file
+    (toggle-frame-maximized)
+    (toggle-frame-fullscreen))
