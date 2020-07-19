@@ -30,9 +30,9 @@
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/org/")
+(setq org-directory "~/Library/Mobile Documents/iCloud~com~appsonthemove~beorg/Documents/org/")
 (setq org-ellipsis "▼")
-(setq org-roam-directory "~/org/")
+(setq org-roam-directory "~/Library/Mobile Documents/iCloud~com~appsonthemove~beorg/Documents/org/")
 (add-hook 'after-init-hook 'org-roam-mode)
 (setq org-roam-capture-templates
         '(("l" "Lit" plain (function org-roam--capture-get-point)
@@ -41,16 +41,18 @@
            :head "#+title: ${title}\n"
            :unnarrowed t)
           ("r" "Roam note" entry (file create-org-file)
-           "* TODO\n #+title: %?\n %t\n")
+           "* %?#+title:\n#+roam_tags:\n\n← uplink"
+           :unnarrowed t)
           ("p" "Private" plain (function org-roam-capture--get-point)
            "%?"
-           :head "#+title: %?\n *TODO %i\n %a"
+           :head "#+title:
+#+roam_tags:"
            :unnarrowed t)))
 
 ;; This function return quantity of three-symbols org files
 (defun get-files-quantity ()
     (string-to-number
-        (shell-command-to-string "ls ~/org/???.org | wc -l")))
+        (shell-command-to-string "ls ~/Library/Mobile\\ Documents/iCloud~com~appsonthemove~beorg/Documents/org/???.org | wc -l")))
 ;; This function return dtring line from notes-id.txt with id
 (defun get-id-from-file (filePath)
     "Return the contents of filename's line"
@@ -59,12 +61,12 @@
         (buffer-string)))
 
 (defun create-org-file ()
-    "Create an org file in ~/org/."
+    "Create an org file in ~/Library/Mobile\ Documents/iCloud~com~appsonthemove~beorg/Documents/org/"
     (interactive)
     (setq notes-quantity (+ 1 (get-files-quantity)))
-    (let ((name (get-id-from-file "~/org/notes-id.txt")))
+    (let ((name (get-id-from-file "~/Library/Mobile Documents/iCloud~com~appsonthemove~beorg/Documents/org/notes-id.txt")))
       (expand-file-name (format "%s.org"
-                                  name) "~/org/")))
+                                  name) "~/Library/Mobile Documents/iCloud~com~appsonthemove~beorg/Documents/org/")))
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type t)
