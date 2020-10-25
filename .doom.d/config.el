@@ -19,18 +19,18 @@
 ;;
 ;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
 ;; font string. You generally only need these two:
-(setq doom-font (font-spec :family "JetBrains Mono" :size 16 :weight 'semi-light))
+(setq doom-font (font-spec :family "JetBrains Mono" :size 16 :weight 'light))
 ;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-solarized-light)
+(setq doom-theme 'doom-one)
+;;(setq doom-theme 'doom-solarized-light)
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/Library/Mobile Documents/iCloud~com~appsonthemove~beorg/Documents/org/")
-(setq org-ellipsis "▼")
 (setq org-roam-directory "~/Library/Mobile Documents/iCloud~com~appsonthemove~beorg/Documents/org/")
 (add-hook 'after-init-hook 'org-roam-mode)
 (setq org-roam-capture-templates
@@ -40,7 +40,7 @@
            :head "#+title: ${title}\n"
            :unnarrowed t)
           ("r" "Roam note" entry (file create-org-file)
-           "* %?#+title:\n#+roam_tags:\n\n← uplink"
+           "* %?#+title:\n#+roam_tags:\n\n*\n** Ссылки\n← uplink"
            :unnarrowed t)
           ("p" "Private" plain (function org-roam-capture--get-point)
            "%?"
@@ -65,7 +65,7 @@
     (setq notes-quantity (+ 1 (get-files-quantity)))
     (let ((name (get-id-from-file "~/Library/Mobile Documents/iCloud~com~appsonthemove~beorg/Documents/org/notes-id.txt")))
       (expand-file-name (format "%s.org"
-                                  name) "~/Library/Mobile Documents/iCloud~com~appsonthemove~beorg/Documents/org/")))
+                                name) "~/Library/Mobile Documents/iCloud~com~appsonthemove~beorg/Documents/org/")))
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
