@@ -63,6 +63,7 @@
        snippets            ; my elves. They type so I don't have to
        ;;word-wrap         ; soft wrapping with language-aware indent
        key-chord
+       evil-better-visual-line
 
        :emacs
        dired               ; making dired pretty [functional]
@@ -75,7 +76,7 @@
        ;;eshell            ; the elisp shell that works everywhere
        ;;shell             ; simple shell REPL for Emacs
        ;;term              ; basic terminal emulator for Emacs
-       ;;vterm             ; the best terminal emulation in Emacs
+       vterm             ; the best terminal emulation in Emacs
 
        :checkers
        syntax              ; tasing you for every semicolon you forget
@@ -104,6 +105,7 @@
        ;;terraform         ; infrastructure as code
        ;;tmux              ; an API for interacting with tmux
        ;;upload            ; map local to remote projects via ssh/ftp
+       ;;org-drill
 
        :lang
        ;;agda              ; types of types of types of types...
@@ -112,7 +114,7 @@
        ;;common-lisp       ; if you've seen one lisp, you've seen them all
        ;;coq               ; proofs-as-programs
        ;;crystal           ; ruby at the speed of c
-       csharp            ; unity, .NET, and mono shenanigans
+       csharp              ; unity, .NET, and mono shenanigans
        ;;data              ; config/data formats
        ;;(dart +flutter)   ; paint ui and not much else
        ;;elixir            ; erlang done right
@@ -166,7 +168,7 @@
 
        :email
        ;;(mu4e +gmail)
-       ;;notmuch
+       ;;notmucf
        ;;(wanderlust +gmail)
 
        :app

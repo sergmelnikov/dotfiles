@@ -1,32 +1,10 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
-;; Place your private configuration here! Remember, you do not need to run 'doom
-;; sync' after modifying this file!
-;;(setq  mac-command-modifier 'meta)
-
-;; Some functionality uses this to identify you, e.g. GPG configuration, email
-;; clients, file templates and snippets.
 (setq user-full-name "Sergey Melnikov"
       user-mail-address "melnikhov@gmail.com")
 
-;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
-;; are the three important ones:
-;;
-;; + `doom-font'
-;; + `doom-variable-pitch-font'
-;; + `doom-big-font' -- used for `doom-big-font-mode'; use this for
-;;   presentations or streaming.
-;;
-;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
-;; font string. You generally only need these two:
 (setq doom-font (font-spec :family "JetBrains Mono" :size 16 :weight 'light))
-;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
-
-;; There are two ways to load a theme. Both assume the theme is installed and
-;; available. You can either set `doom-theme' or manually load a theme with the
-;; `load-theme' function. This is the default:
 (setq doom-theme 'doom-one)
-;;(setq doom-theme 'doom-solarized-light)
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -52,7 +30,8 @@
 (defun get-files-quantity ()
     (string-to-number
         (shell-command-to-string "ls ~/Library/Mobile\\ Documents/iCloud~com~appsonthemove~beorg/Documents/org/???.org | wc -l")))
-;; This function return dtring line from notes-id.txt with id
+
+;; This function return string line from notes-id.txt with id
 (defun get-id-from-file (filePath)
     "Return the contents of filename's line"
     (with-temp-buffer
@@ -67,31 +46,18 @@
       (expand-file-name (format "%s.org"
                                 name) "~/Library/Mobile Documents/iCloud~com~appsonthemove~beorg/Documents/org/")))
 
-;; This determines the style of line numbers in effect. If set to `nil', line
-;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type t)
 
-;; Here are some additional functions/macros that could help you configure Doom:
-;;
-;; - `load!' for loading external *.el files relative to this one
-;; - `use-package!' for configuring packages
-;; - `after!' for running code after a package has loaded
-;; - `add-load-path!' for adding directories to the `load-path', relative to
-;;   this file. Emacs searches the `load-path' when you load packages with
-;;   `require' or `use-package'.
-;; - `map!' for binding new keys
-;;
-;; To get information about any of these functions/macros, move the cursor over
-;; the highlighted symbol at press 'K' (non-evil users must press 'C-c c k').
-;; This will open documentation for it, including demos of how they are used.
-;;
-;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
-;; they are implemented.
+(map! :leader
+      (:prefix-map ("n" . "notes")
+       (:prefix ("k" . "anki")
+        :desc "Anki mode" "m" #'anki-editor-insert-note
+        :desc "Insert Anki note" "i" #'anki-editor-insert-note
+        :desc "Push notes" "p" #'anki-editor-push-notes
+        :desc "Retry pushing notes" "r" #'anki-editor-retry-failure-notes)))
+
+
 (custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
  '(package-selected-packages (quote (evil-escape evil-better-visual-line org-roam))))
 
 (use-package evil-better-visual-line
@@ -99,12 +65,7 @@
   :config
   (evil-better-visual-line-on))
 
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+(custom-set-faces)
 
 ;; Full screen mode
 (if (eq initial-window-system 'x)                 ; if started by emacs command or desktop file
@@ -113,26 +74,49 @@
 
 ;; This code helps us to work with Spacemacs (Emacs + Evil mode) in multilanguage mode
 ;; Pavel Pavlov (c) 2015
+;; (setq lang_source "com.apple.keylayout.US")                     ;set default var lang_source for issw arg
+;; (add-hook 'evil-insert-state-entry-hook                         ;what we do when enter insert mode
+;;           (lambda ()
+;;             (shell-command (concat "issw " lang_source))))
+
+;; (add-hook 'evil-insert-state-exit-hook                          ;what we do when enter normal mode
+;;           (lambda ()
+;;             (setq lang_source (shell-command-to-string "issw"))
+;;             (shell-command "issw com.apple.keylayout.US")))
+
+;; (setq lang_source "com.apple.keylayout.US")                     ;set default var lang_source for issw arg
+;; (add-hook 'evil-replace-state-entry-hook                        ;what we do when enter insert mode
+;;           (lambda ()
+;;             (shell-command (concat "issw " lang_source))))
+
+;; (add-hook 'evil-replace-state-exit-hook                          ;what we do when enter normal mode
+;;           (lambda ()
+;;             (setq lang_source (shell-command-to-string "issw"))
+;;             (shell-command "issw com.apple.keylayout.US")))
+
 (setq lang_source "com.apple.keylayout.US")                     ;set default var lang_source for issw arg
 (add-hook 'evil-insert-state-entry-hook                         ;what we do when enter insert mode
           (lambda ()
-            (shell-command (concat "issw " lang_source))))
-
+            (shell-command (concat "issw " lang_source))))      ;
 (add-hook 'evil-insert-state-exit-hook                          ;what we do when enter normal mode
           (lambda ()
             (setq lang_source (shell-command-to-string "issw"))
             (shell-command "issw com.apple.keylayout.US")))
-
 (setq lang_source "com.apple.keylayout.US")                     ;set default var lang_source for issw arg
-(add-hook 'evil-replace-state-entry-hook                        ;what we do when enter insert mode
+(add-hook 'evil-replace-state-entry-hook                         ;what we do when enter insert mode
           (lambda ()
-            (shell-command (concat "issw " lang_source))))
-
+            (shell-command (concat "issw " lang_source))))      ;
 (add-hook 'evil-replace-state-exit-hook                          ;what we do when enter normal mode
           (lambda ()
             (setq lang_source (shell-command-to-string "issw"))
             (shell-command "issw com.apple.keylayout.US")))
 
+
+(setq shell-file-name "/bin/bash")
+
 ;; Display time
 (display-time-mode t)
 (setq display-time-24hr-format t)
+
+;; (define-key evil-normal-state-map (kbd "RET") '+evil/insert-newline-below)
+(setenv "PATH" "/bin:/usr/local/bin:/usr/bin:")
