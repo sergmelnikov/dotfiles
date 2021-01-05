@@ -16,7 +16,7 @@
                 },
                 "rules": [
                     {
-                        "description": "Caps Lock to Fn",
+                        "description": "Caps Lock to Escape on single press, Control on press and hold.",
                         "manipulators": [
                             {
                                 "from": {
@@ -29,7 +29,12 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "fn"
+                                        "key_code": "left_control"
+                                    }
+                                ],
+                                "to_if_alone": [
+                                    {
+                                        "key_code": "escape"
                                     }
                                 ],
                                 "type": "basic"
@@ -233,7 +238,7 @@
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "u"
+                                    "key_code": "o"
                                 },
                                 "to": [
                                     {
@@ -251,7 +256,7 @@
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "i"
+                                    "key_code": "p"
                                 },
                                 "to": [
                                     {
@@ -269,7 +274,7 @@
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "o"
+                                    "key_code": "h"
                                 },
                                 "to": [
                                     {
@@ -305,7 +310,7 @@
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "j"
+                                    "key_code": "semicolon"
                                 },
                                 "to": [
                                     {
@@ -323,7 +328,7 @@
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "k"
+                                    "key_code": "u"
                                 },
                                 "to": [
                                     {
@@ -341,7 +346,7 @@
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "l"
+                                    "key_code": "i"
                                 },
                                 "to": [
                                     {
@@ -359,7 +364,7 @@
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "semicolon"
+                                    "key_code": "y"
                                 },
                                 "to": [
                                     {
@@ -377,7 +382,7 @@
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "m"
+                                    "key_code": "j"
                                 },
                                 "to": [
                                     {
@@ -395,7 +400,7 @@
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "comma"
+                                    "key_code": "k"
                                 },
                                 "to": [
                                     {
@@ -413,7 +418,7 @@
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "period"
+                                    "key_code": "l"
                                 },
                                 "to": [
                                     {
@@ -449,7 +454,7 @@
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "right_command"
+                                    "key_code": "m"
                                 },
                                 "to": [
                                     {
@@ -534,11 +539,11 @@
                         ]
                     },
                     {
-                        "description": "Fn + f to Alfred Toggle",
+                        "description": "Fn + $ to Alfred Toggle",
                         "manipulators": [
                             {
                                 "from": {
-                                    "key_code": "f",
+                                    "key_code": "e",
                                     "modifiers": {
                                         "mandatory": [
                                             "fn"
@@ -941,6 +946,77 @@
                                 "type": "basic"
                             }
                         ]
+                    },
+                    {
+                        "description": "F7 (back track, rewind) key should only control iTunes.",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "f7",
+                                    "modifiers": {}
+                                },
+                                "to_after_key_up": [
+                                    {
+                                        "halt": true
+                                    }
+                                ],
+                                "to_if_alone": [
+                                    {
+                                        "shell_command": "osascript -e 'tell application \"iTunes\" to back track'"
+                                    }
+                                ],
+                                "to_if_held_down": [
+                                    {
+                                        "shell_command": "osascript -e 'tell application \"iTunes\" to rewind'"
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "F8 (play/pause) key should only control iTunes.",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "f8",
+                                    "modifiers": {}
+                                },
+                                "to": [
+                                    {
+                                        "shell_command": "osascript -e 'tell application \"iTunes\" to playpause'"
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "F9 (next track, fast forward) key should only control iTunes.",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "f9",
+                                    "modifiers": {}
+                                },
+                                "to_after_key_up": [
+                                    {
+                                        "halt": true
+                                    }
+                                ],
+                                "to_if_alone": [
+                                    {
+                                        "shell_command": "osascript -e 'tell application \"iTunes\" to next track'"
+                                    }
+                                ],
+                                "to_if_held_down": [
+                                    {
+                                        "shell_command": "osascript -e 'tell application \"iTunes\" to fast forward'"
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
                     }
                 ]
             },
@@ -1054,7 +1130,7 @@
                         "key_code": "non_us_backslash"
                     },
                     "to": {
-                        "key_code": "escape"
+                        "key_code": "fn"
                     }
                 }
             ],
