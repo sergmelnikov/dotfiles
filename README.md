@@ -1,2 +1,2 @@
-# dotfiles
-Backup for configuration dot files
+# .dotfiles
+Configuration dotfiles in one place.
