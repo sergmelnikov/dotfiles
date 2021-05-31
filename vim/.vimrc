@@ -1,8 +1,9 @@
 set number
 set expandtab
 set tabstop=4 
-
-:syntax on
+set nocompatible
+filetype plugin on
+syntax on
 
 " Move 1 more lines up or down in normal and visual selection modes
 nnoremap K :m .-2<CR>==

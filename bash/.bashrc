@@ -11,9 +11,8 @@ parse_git_branch() {
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
 
-export PS1='\[\e[34m\]\w\[\e[39m\]$(parse_git_branch) \[\e[32m\]\$\[\e[39m\] '
-#export PS1="\u@\h \W\[\033[32m\]\$(parse_git_branch)\[\033[00m\] $ "
-export EDITOR=/usr/bin/vim
+export PS1='\[\e[34m\]\w\[\e[39m\]$(parse_git_branch) \[\e[39m\]\$\[\e[39m\] '
+export EDITOR=/usr/local/bin/nvim
 
 # Disable warning message about zsh is the new default shell for MacOS
 export BASH_SILENCE_DEPRECATION_WARNING=1
@@ -23,7 +22,7 @@ alias f='open -a Finder ./'
 alias la='ls -A'
 alias l='ls -CF'
 alias ll='ls -ahlGF'
-alias v='vim'
+alias v='nvim'
 alias python=python3
 alias g='git'
 alias gs='git status'
@@ -31,6 +30,7 @@ alias srv='ssh mainuser@10.0.1.14'
 alias srb=~/bng_srv.sh
 alias blog='tail ~/code/bng_notificator/log.txt'
 alias zkv='cd ~/Library/Mobile\ Documents/iCloud~com~appsonthemove~beorg/Documents/org'
+alias em='TERM=xterm-24bit emacs -nw'
 
 # Create a new directory and enter it
 function d() {

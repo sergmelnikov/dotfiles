@@ -2,8 +2,8 @@
 
 (setq user-full-name "Sergey Melnikov"
       user-mail-address "melnikhov@gmail.com"
-      doom-font (font-spec :family "JetBrains Mono" :size 16 :weight 'light)
-      doom-theme 'doom-vibrant
+      ;; doom-font (font-spec :family "JetBrains Mono" :size 16 :weight 'light)
+      doom-font (font-spec :family "Fira Code" :size 16 :weight 'light)
       org-directory "~/Library/Mobile Documents/iCloud~com~appsonthemove~beorg/Documents/org/"
       org-roam-directory "~/Library/Mobile Documents/iCloud~com~appsonthemove~beorg/Documents/org/"
       +org-roam-open-buffer-on-find-file nil
@@ -11,6 +11,11 @@
       shell-file-name "/bin/bash"
       fill-column 80
       projectile-project-search-path '("~/code/"))
+
+(setq doom-themes-enable-bold nil)
+(load-theme 'doom-oceanic-next t)
+
+(setq-default flycheck-disabled-checkers '(emacs-lisp emacs-lisp-checkdoc))
 
 (setq display-time-24hr-format t)
 (display-time-mode 1)
@@ -108,3 +113,8 @@
       deft-recursive t
       deft-org-mode-title-prefix nil
       deft-time-format " %Y.%m.%d")
+
+;; Minimal splash screen
+(remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-shortmenu)
+(add-hook! '+doom-dashboard-mode-hook (hide-mode-line-mode 1) (hl-line-mode -1))
+(setq-hook! '+doom-dashboard-mode-hook evil-normal-state-cursor (list nil))
