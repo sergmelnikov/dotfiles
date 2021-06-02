@@ -17,8 +17,9 @@
 
 (setq-default flycheck-disabled-checkers '(emacs-lisp emacs-lisp-checkdoc))
 
-(setq display-time-24hr-format t)
-(display-time-mode 1)
+;; Set display date and time
+;; (setq display-time-24hr-format t)
+;; (display-time-mode 1)
 ;; (setq display-time-day-and-date t)
 
 (setenv "PATH" "/bin:/usr/local/bin:/usr/bin:/usr/sbin/:/sbin:")
@@ -77,6 +78,12 @@
   :config
   (evil-better-visual-line-on))
 
+;; Align text to center in org-mode
+(defun setup-olivetti-mode ()
+  (olivetti-mode)
+  (setq olivetti-body-width 82))
+(add-hook! 'org-mode-hook 'setup-olivetti-mode)
+
 ;; Full screen mode
 (if (eq initial-window-system 'x)                 ; if started by emacs command or desktop file
     (toggle-frame-maximized)
@@ -105,8 +112,7 @@
         (dired-hide-details-mode)))
 
 (setq
-    org-superstar-headline-bullets-list '("⁖" "◉" "○" "✸" "✿")
-)
+    org-superstar-headline-bullets-list '("⁖" "◉" "○" "✸" "✿"))
 
 (setq deft-directory "~/Library/Mobile Documents/iCloud~com~appsonthemove~beorg/Documents/org/"
       deft-extensions '("org")

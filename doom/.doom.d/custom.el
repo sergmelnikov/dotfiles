@@ -13,7 +13,7 @@
  '(jdee-db-spec-breakpoint-face-colors (cons "#1c1f24" "#484854"))
  '(objed-cursor-color "#ff665c")
  '(package-selected-packages
-   '(org-bullets simpleclip anki-mode org-drill anki-editor omnisharp csharp-mode evil-escape evil-better-visual-line org-roam))
+   '(visual-fill-column evil-terminal-cursor-changer org-bullets simpleclip anki-mode org-drill anki-editor omnisharp csharp-mode evil-escape evil-better-visual-line org-roam))
  '(pdf-view-midnight-colors (cons "#bbc2cf" "#242730"))
  '(rustic-ansi-faces
    ["#242730" "#ff665c" "#7bc275" "#FCCE7B" "#51afef" "#C57BDB" "#5cEfFF" "#bbc2cf"])

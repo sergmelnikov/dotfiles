@@ -3,6 +3,7 @@
 (package! simpleclip)
 (package! evil-snipe)
 (package! avy)
+(package! olivetti)
 
 ;; To install SOME-PACKAGE from MELPA, ELPA or emacsmirror:
 ;(package! some-package)
