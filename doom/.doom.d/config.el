@@ -17,11 +17,6 @@
 
 (setq-default flycheck-disabled-checkers '(emacs-lisp emacs-lisp-checkdoc))
 
-;; Set display date and time
-;; (setq display-time-24hr-format t)
-;; (display-time-mode 1)
-;; (setq display-time-day-and-date t)
-
 (setenv "PATH" "/bin:/usr/local/bin:/usr/bin:/usr/sbin/:/sbin:")
 
 (add-hook 'after-init-hook 'org-roam-mode)
@@ -81,7 +76,7 @@
 ;; Align text to center in org-mode
 (defun setup-olivetti-mode ()
   (olivetti-mode)
-  (setq olivetti-body-width 82))
+  (setq olivetti-body-width 70))
 (add-hook! 'org-mode-hook 'setup-olivetti-mode)
 
 ;; Full screen mode
@@ -89,23 +84,27 @@
     (toggle-frame-maximized)
     (toggle-frame-fullscreen))
 
-;; Auto change language to english when enter normal mode from insert mode
+;; Work in multilanguage mode
 (setq lang_source "com.apple.keylayout.US")                     ;set default var lang_source for issw arg
 (add-hook 'evil-insert-state-entry-hook                         ;what we do when enter insert mode
           (lambda ()
-            (shell-command (concat "issw " lang_source))))      ;
+            (shell-command (concat "issw " lang_source))))
+
 (add-hook 'evil-insert-state-exit-hook                          ;what we do when enter normal mode
           (lambda ()
             (setq lang_source (shell-command-to-string "issw"))
             (shell-command "issw com.apple.keylayout.US")))
+
 (setq lang_source "com.apple.keylayout.US")                     ;set default var lang_source for issw arg
-(add-hook 'evil-replace-state-entry-hook                         ;what we do when enter insert mode
+(add-hook 'evil-replace-state-entry-hook                        ;what we do when enter insert mode
           (lambda ()
-            (shell-command (concat "issw " lang_source))))      ;
-(add-hook 'evil-replace-state-exit-hook                          ;what we do when enter normal mode
+            (shell-command (concat "issw " lang_source))))
+
+(add-hook 'evil-replace-state-exit-hook                         ;what we do when enter normal mode
           (lambda ()
             (setq lang_source (shell-command-to-string "issw"))
             (shell-command "issw com.apple.keylayout.US")))
+
 
 (add-hook 'dired-mode-hook
       (lambda ()
