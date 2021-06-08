@@ -13,11 +13,20 @@
       projectile-project-search-path '("~/code/"))
 
 (setq doom-themes-enable-bold nil)
-(load-theme 'doom-oceanic-next t)
+;; (load-theme 'doom-oceanic-next t)
+(load-theme 'doom-tomorrow-day t)
 
 (setq-default flycheck-disabled-checkers '(emacs-lisp emacs-lisp-checkdoc))
 
 (setenv "PATH" "/bin:/usr/local/bin:/usr/bin:/usr/sbin/:/sbin:")
+
+;; Full screen mode
+;; (if (eq initial-window-system 'x)                 ; if started by emacs command or desktop file
+;;     (toggle-frame-maximized)
+;;     (toggle-frame-fullscreen))
+
+;; Set window size and place
+(setq initial-frame-alist '((left . 180) (width . 90) (height . 50)))
 
 (add-hook 'after-init-hook 'org-roam-mode)
 (setq org-roam-capture-templates
@@ -78,11 +87,6 @@
   (olivetti-mode)
   (setq olivetti-body-width 70))
 (add-hook! 'org-mode-hook 'setup-olivetti-mode)
-
-;; Full screen mode
-(if (eq initial-window-system 'x)                 ; if started by emacs command or desktop file
-    (toggle-frame-maximized)
-    (toggle-frame-fullscreen))
 
 ;; Work in multilanguage mode
 (setq lang_source "com.apple.keylayout.US")                     ;set default var lang_source for issw arg
