@@ -14,7 +14,7 @@
 
 (setq doom-themes-enable-bold nil)
 ;; (load-theme 'doom-oceanic-next t)
-(load-theme 'doom-tomorrow-day t)
+(load-theme 'doom-opera-light t)
 
 (setq-default flycheck-disabled-checkers '(emacs-lisp emacs-lisp-checkdoc))
 
