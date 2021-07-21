@@ -16,7 +16,6 @@
 ;; (load-theme 'doom-oceanic-next t)
 (load-theme 'doom-opera-light t)
 (setq doom-modeline-height 1)
-
 (setq-default flycheck-disabled-checkers '(emacs-lisp emacs-lisp-checkdoc))
 
 (setenv "PATH" "/bin:/usr/local/bin:/usr/bin:/usr/sbin/:/sbin:")
